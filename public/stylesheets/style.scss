@@ -91,23 +91,68 @@ main {
         .conversation {
             height: 100%;
             width: 100%;
-            background-color: rgb(57, 44, 44);
             position: relative;
+
+            .messages {
+                height: 100%;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                padding: 2rem 1rem;
+                padding-top: 8rem;
+                gap: 1rem;
+
+                .message {
+                    display: flex;
+                    gap: 1rem;
+
+                    img {
+                        height: 3rem;
+                        width: 3rem;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+
+                    p {
+                        padding: 0.75rem;
+                        background-color: #323232;
+                        border-radius: 0.25rem;
+                    }
+                }
+
+                .message:has(img) {
+                    p {
+                        background-color: #23cfa6;
+                        color: black;
+                    }
+                }
+
+                .message:not(:has(img)) {
+                    margin-left: auto;
+                }
+
+            }
 
             .inputs {
                 position: absolute;
                 transform: translateX(-50%);
                 left: 50%;
                 bottom: 0;
-                width: 70%;
+                width: 100%;
                 display: flex;
+                gap: 0.5rem;
+                justify-content: center;
+                padding-bottom: 1rem;
 
                 input {
-                    width: 80%;
+                    width: calc(100% - 7rem);
                     background-color: #1e1e1e;
                     border-radius: 3rem;
                     border: none;
                     outline: none;
+                    color: white;
+                    font-size: 1.1rem;
+                    padding: 1rem 2rem;
                 }
 
                 button {

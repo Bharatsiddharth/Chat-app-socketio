@@ -1,48 +1,65 @@
 <%- include("partials/header") %>
-  <main>
-    <div class="left">
-      <div class="top">
-        <div class="user">
-          <img src="<%= user.profileImage %>" alt="">
-          <h1><%= user.username %></h1>
-        </div>
-      </div>
-      <div class="bottom">
-        <div class="users">
-          <div class="user">
-              <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bWFufGVufDB8fDB8fHww" alt="">
-              <h1>John Doe</h1>
-          </div>
-          <div class="user">
-            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bWFufGVufDB8fDB8fHww" alt="">
-            <h1>John Doe</h1>
-        </div>
-        <div class="user">
-          <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bWFufGVufDB8fDB8fHww" alt="">
-          <h1>John Doe</h1>
-      </div>
-        </div>
-      </div>
-    </div>
-    <div class="right">
-      <div class="topUser">
-        <div class="user">
-          <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bWFufGVufDB8fDB8fHww" alt="">
-          <h1>John Doe</h1>
-      </div>
-      </div>
-      <div class="conversation">
-        <div class="inputs">
-          <input type="text">
-          <button><i class="ri-send-plane-2-fill"></i></button>
-        </div>
-      </div>
-    </div>
-  </main>
+<main>
 
-  <script>
-    
-  </script>
+  <div class="left">
+    <div class="top">
+      <div class="user">
+        <img src="<%= user.profileImage %>" alt="">
+        <h1><%= user.username %></h1>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div class="users">
+        <div class="user">
+          <img src="https://images.unsplash.com/photo-1622396636133-ba43f812bc35?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fG1vZGVsc3xlbnwwfHwwfHx8MA%3D%3D" alt="">
+          <h1>Jasmine singh</h1>
+        </div>
+        <div class="user">
+          <img src="https://images.unsplash.com/photo-1622396636133-ba43f812bc35?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fG1vZGVsc3xlbnwwfHwwfHx8MA%3D%3D" alt="">
+          <h1>Jasmine singh</h1>
+        </div>
+        <div class="user">
+          <img src="https://images.unsplash.com/photo-1622396636133-ba43f812bc35?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fG1vZGVsc3xlbnwwfHwwfHx8MA%3D%3D" alt="">
+          <h1>Jasmine singh</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="right">
+    <div class="topUser">
+      <div class="user">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fG1vZGVsc3xlbnwwfHwwfHx8MA%3D%3D" alt="">
+        <div class="text">
+          <h1>Username</h1>
+          <small>Active now</small>
+        </div>
+      </div>
+    </div>
+    <div class="conversation">
+      <div class="messages">
+        <div class="message">
+          <img src="https://images.unsplash.com/photo-1622396636133-ba43f812bc35?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fG1vZGVsc3xlbnwwfHwwfHx8MA%3D%3D" alt="">
+          <p>Some message</p>
+        </div>
+        <div class="message">
+          <p>Some message</p>
+        </div>
+      </div>
+
+      <div class="inputs">
+        <input type="text" placeholder="Write your message">
+        <button><i class="ri-send-plane-line"></i></button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io();
+</script>
     
   
   <%- include("partials/footer") %>
