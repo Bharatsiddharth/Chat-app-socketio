@@ -77,6 +77,7 @@ main {
         width: 70%;
         height: 100%;
         background-color: #000000;
+        display: none;
 
         .topUser {
             padding: 1rem 2rem;
@@ -163,6 +164,7 @@ main {
                     background-color: #1e1e1e;
                     border: none;
                     outline: none;
+                    cursor: pointer;
                 }
             }
         }

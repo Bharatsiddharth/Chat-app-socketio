@@ -1,62 +1,81 @@
 var express = require('express');
 var router = express.Router();
+const userModel = require('../models/user')
 
-const User = require("../model/userSchema");
-const passport = require("passport");
-const LocalStrategy = require("passport-local");
-passport.use(new LocalStrategy(User.authenticate()))
+var passport = require('passport')
+var localStrategy = require('passport-local')
+passport.use(new localStrategy(userModel.authenticate()))
 
 /* GET home page. */
-router.get('/', isLoggedIn, function(req, res, next) {
-  res.render('index', {user:req.user });
+router.get('/', isloggedIn, function (req, res, next) {
+  const user = req.user
+  res.render('index', { title: 'Express', user });
 });
 
-router.get('/register', function(req, res, next) {
-  res.render('register');
+router.get('/register', (req, res, next) => {
+  res.render('register')
+})
+
+function isloggedIn(req, res, next) {
+  if (req.isAuthenticated()) return next();
+  else res.redirect('/login');
+}
+
+router.post('/register', function (req, res) {
+  var userData = new userModel({
+    username: req.body.username,
+    profileImage: req.body.profileImage
+  })
+  userModel
+    .register(userData, req.body.password)
+    .then(function (registeredUser) {
+      passport.authenticate('local')(req, res, function () {
+        res.redirect('/');
+      })
+    })
 });
 
-router.post('/register',async function(req, res, next) {
-  try {
-    const {username, profileImage, password } = req.body;
-    await User.register({username, profileImage}, password);
 
-  res.send("user registered")
-  } catch (error) {
-    res.send(error)
-  }
-});
+router.get('/login', (req, res, next) => {
+  res.render('login')
+})
 
 
-
-router.get('/login', function(req, res, next) {
-  res.render('login');
-});
-
-
-router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/login"
-}),
-function (req, res, next) {}
+router.post(
+  '/login',
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+  }),
+  (req, res, next) => { }
 );
 
-
-
-
-router.get('/logout-user', function(req, res, next) {
-  req.logOut(() => {
-    res.redirect('/login')
-  });
+router.get('/logout', (req, res, next) => {
+  if (req.isAuthenticated())
+    req.logout((err) => {
+      if (err) res.send(err);
+      else res.redirect('/');
+    });
+  else {
+    res.redirect('/');
+  }
 });
 
 
-function isLoggedIn(req,res,next){
-  if(req.isAuthenticated()){
-    next();
-  }else{
-    res.redirect('/login')
-  }
-}
+router.get('/getOnlineUser', isloggedIn, async (req, res, next) => {
+  const loggedInUser = req.user
+
+
+  const onlineUsers = await userModel.find({
+    socketId: { $ne: "" },
+    _id: { $ne: loggedInUser._id }
+  })
+
+  res.status(200).json({
+    onlineUsers
+  })
+
+})
 
 
 
