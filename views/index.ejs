@@ -110,6 +110,7 @@
     })
 
     socket.on('max', messagePacket => {
+      if(messagePacket.sender.username = receiver)
       appendIncomingMessage(messagePacket.sender.profileImage, messagePacket.text)
     })
 
@@ -125,6 +126,9 @@
       document.querySelector('.topUser .user img').src = userImage
       document.querySelector('.topUser .user .text').textContent = userName
 
+      axios.get(`./getMessage?recevier=${receiver}`).then(response => {
+        console.log(response.data)
+      })
 
     }
   </script>
